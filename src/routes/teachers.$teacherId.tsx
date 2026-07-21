@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Star, Users, BadgeCheck, Calendar, ChevronDown, ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { getTeacher, getCoursesByTeacher } from "@/data/mock";
+import { getTeacher, getCoursesByTeacher, type Teacher } from "@/data/mock";
 import { CourseCard } from "@/components/course-card";
 import { Reveal } from "@/components/reveal";
 
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/teachers/$teacherId")({
 });
 
 function TeacherDetail() {
-  const { teacher } = Route.useLoaderData();
+  const { teacher } = Route.useLoaderData() as { teacher: Teacher };
   const teacherCourses = getCoursesByTeacher(teacher.id);
 
   return (
